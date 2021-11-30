@@ -1,15 +1,16 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/controllers/controller.php');
-require($_SERVER['DOCUMENT_ROOT'].'/models/article.model.php');
+require(CONTROLLER.'controller.php');
 
 class Home extends Controller
 {
-	private $articleModel;
-
-	public function __construct(){
-		global $db;
-		$this->articleModel = new Article($db);
-		echo '<main class="main-content">Home page</main>';
+	public function index(){
+		try {
+			$articleModel = $this->loadModel('article');
+			$result = $articleModel->getPage(2);
+			print_r($result);
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
 	}
 	
 }

@@ -1,11 +1,11 @@
 <?php
 
-class Model
+abstract class Model
 {
-	private $db;
+	public $db;
 	
-	public function __constructor($db){
-		$this->db = $db;
+	public function __construct($conn){
+		$this->db = $conn;
 	}
 }
 

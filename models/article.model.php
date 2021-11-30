@@ -1,10 +1,13 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/models/model.php');
+require(MODEL.'model.php');
 
 class Article extends Model
 {
 	public function getPage($page){
-		throw new Exception("To be implemented");
+		// global $db;
+		$stmt = $this->db->prepare("SELECT * FROM articles");
+		$stmt->execute();
+		return $stmt->fetchAll();
 	}
 }
 
