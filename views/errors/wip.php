@@ -2,7 +2,7 @@
 
 <main class="page-content">
 	<div class="container">
-		<div class="error">Ups! Wygląda na to, że wystąpił problem z połączeniem z baza danych. Przepraszamy.</div>
+		<div class="error">Pracujemy nad tym...</div>
 	</div>
 </main>
 

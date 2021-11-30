@@ -32,8 +32,11 @@
 	} catch (PDOException $e) {	// błąd bazy danych
 		http_response_code(500);
 		include(ERROR.'dberror.php');
-	}catch (NotFoundException $e) {	// nie znaleziono strony
+	}	catch (NotFoundException $e) {	// nie znaleziono strony
 		http_response_code(404);
 		include(ERROR.'404.php');
+	} catch (NotImplementedException $e) {	// nie znaleziono strony
+		http_response_code(500);
+		include(ERROR.'wip.php');
 	} 
 ?>

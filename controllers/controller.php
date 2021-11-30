@@ -3,7 +3,6 @@
 abstract class Controller
 {
 	private $view;
-	private $data;
 	protected $params;
 
 	public function __construct($params){
@@ -13,7 +12,7 @@ abstract class Controller
 	abstract public function index();
 
 	protected function loadView($viewName){
-		if(!file_exists(VIEW.$viewName.'.php')){
+		if(file_exists(VIEW.$viewName.'.php')){
 			$this->view = VIEW.$viewName.'.php';
 		} else {
 			throw new Exception('Widok nie istnieje');
@@ -33,12 +32,8 @@ abstract class Controller
 		}
 	}
 
-	protected function setData($d){
-		$this->data = $d;
-	}
-
-	protected function render(){
-		include($view);
+	protected function render($data){
+		include($this->view);
 	}
 
 	public function __call($method, $params){
