@@ -5,7 +5,10 @@
 	define('VIEW', ROOT.'views'.DIRECTORY_SEPARATOR);
 	define('ERROR', VIEW.'errors'.DIRECTORY_SEPARATOR);
 	define('MODEL', ROOT.'models'.DIRECTORY_SEPARATOR);
+	define('ASSETS', 'http://'.$_SERVER['HTTP_HOST'].DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR);
 	/** =================================== */
+
+	session_start();
 	
 	try {
 		require_once('functions.php');
@@ -32,11 +35,8 @@
 	} catch (PDOException $e) {	// błąd bazy danych
 		http_response_code(500);
 		include(ERROR.'dberror.php');
-	}	catch (NotFoundException $e) {	// nie znaleziono strony
-		http_response_code(404);
-		include(ERROR.'404.php');
-	} catch (NotImplementedException $e) {	// nie znaleziono strony
-		http_response_code(500);
-		include(ERROR.'wip.php');
-	} 
+	} catch (FunctionalityException $e) {	// inne wyjątki
+		http_response_code($e->getStatus());
+		include(ERROR.'error.php');
+	}
 ?>

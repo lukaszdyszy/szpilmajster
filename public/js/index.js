@@ -1,19 +1,22 @@
-const mySlider = new Slider({
-    alias: '#my-slider',
-	orientation: 'horizontal',
-    autoChange: true,
-	timer: 2000,
-	draggable: true
-});
-
-// slider pagination
-const dots = document.querySelectorAll('.pag');
-dots.forEach((el, index) => {
-	el.addEventListener('click', () => {
-		mySlider.changeSlide(index);
-		mySlider.autoChange = false;
+if(document.getElementById('my-slider')){
+	const mySlider = new Slider({
+		alias: '#my-slider',
+		orientation: 'horizontal',
+		autoChange: true,
+		timer: 5000,
+		draggable: true
 	});
-});
+	document.getElementById('my-slider').addEventListener('click', () => {mySlider.autoChange=false;});
+	
+	// slider pagination
+	const dots = document.querySelectorAll('.pag');
+	dots.forEach((el, index) => {
+		el.addEventListener('click', () => {
+			mySlider.changeSlide(index);
+			mySlider.autoChange = false;
+		});
+	});
+}
 
 /* ==================== UI functions ==================== */
 
@@ -64,5 +67,13 @@ closeFormBtn.addEventListener('click', () => {
 	popup.classList.remove('open');
 });
 
+
+// messages
+const messages = document.querySelectorAll('.message');
+messages.forEach(msg => {
+	msg.addEventListener('click', e => {
+		msg.remove();
+	});
+});
 
 // window.addEventListener('load', toggle);
