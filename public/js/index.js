@@ -1,4 +1,6 @@
-if(document.getElementById('my-slider')){
+/* ==================== Recommended Slider =============== */
+const sliderContainer = document.getElementById('my-slider');
+if(sliderContainer){
 	const mySlider = new Slider({
 		alias: '#my-slider',
 		orientation: 'horizontal',
@@ -6,7 +8,7 @@ if(document.getElementById('my-slider')){
 		timer: 5000,
 		draggable: true
 	});
-	document.getElementById('my-slider').addEventListener('click', () => {mySlider.autoChange=false;});
+	sliderContainer.addEventListener('click', () => {mySlider.autoChange=false;});
 	
 	// slider pagination
 	const dots = document.querySelectorAll('.pag');
@@ -17,24 +19,29 @@ if(document.getElementById('my-slider')){
 		});
 	});
 }
+/* ====================================================== */
 
 /* ==================== UI functions ==================== */
 
 // theme switch
-document.getElementById('theme-switch').addEventListener('change', e => {
-	if(e.target.checked){
+let themeSwitch = document.getElementById('theme-switch');
+function switchTheme() {
+	if(themeSwitch.checked){
+		localStorage.setItem('theme', 'light');
 		document.body.classList = "theme-light";
 	} else {
+		localStorage.setItem('theme', 'dark');
 		document.body.classList = "theme-dark";
 	}
-});
+}
+document.getElementById('theme-switch').addEventListener('change', switchTheme);
 
-// menu toggle
+// menu toggle (for mobile menu)
 let menuOpen = false;
 const menuToggleBtn = document.getElementById('menu-toggle');
 const websiteMenu = document.getElementById('website-menu');
 
-function toggle() {
+function toggleMenu() {
 	menuOpen = !menuOpen;
 	if (menuOpen) {
 		menuToggleBtn.classList.add('open');
@@ -44,15 +51,7 @@ function toggle() {
 		websiteMenu.classList.remove('open');
 	}
 }
-menuToggleBtn.addEventListener('click', toggle);
-
-document.querySelectorAll('li.sub-menu-link').forEach(el => {
-	const submenu = el.querySelector('ul.sub-menu');
-	el.addEventListener('click', () => {
-		submenu.classList.toggle('open');
-	});
-});
-
+menuToggleBtn.addEventListener('click', toggleMenu);
 
 // login form popup
 let formOpen = false;
@@ -60,12 +59,14 @@ const openFormBtn = document.getElementById('open-form');
 const closeFormBtn = document.getElementById('close-form');
 const popup = document.querySelector('.login-popup');
 
-openFormBtn.addEventListener('click', () => {
-	popup.classList.add('open');
-});
-closeFormBtn.addEventListener('click', () => {
-	popup.classList.remove('open');
-});
+if(openFormBtn){
+	openFormBtn.addEventListener('click', () => {
+		popup.classList.add('open');
+	});
+	closeFormBtn.addEventListener('click', () => {
+		popup.classList.remove('open');
+	});
+}
 
 
 // messages
@@ -76,4 +77,13 @@ messages.forEach(msg => {
 	});
 });
 
-// window.addEventListener('load', toggle);
+window.addEventListener('load', () => {
+	if(!localStorage.getItem('theme')){
+		localStorage.setItem('theme', 'dark');
+	}
+	let theme = localStorage.getItem('theme');
+	if(theme === 'light'){
+		themeSwitch.checked = true;
+		switchTheme();
+	}
+});

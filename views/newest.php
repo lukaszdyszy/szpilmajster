@@ -21,7 +21,7 @@
 								</a>
 							</h2>
 							<div class="author"><?php 
-								echo '<a href="/user/articles/1">'.$post['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
+								echo '<a href="/user/articles/1">'.$art['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
 							?></div>
 						</div>
 					</article>
@@ -29,9 +29,15 @@
 		</div>
 
 		<div class="newest-pagination">
-			<a href="/home/newest/1">1</a>
-			<?php echo $data['page']; ?>
+			<a href="/home/newest/<?php echo ($data['page']-1); ?>" class="more-newest-btn pag-nav"><</a>
+			<input id="page-number" type="number" 
+				min="1" 
+				max="<?php echo $data['pages']; ?>" 
+				value="<?php echo $data['page']; ?>"
+			>
+			z
 			<a href="/home/newest/<?php echo $data['pages']; ?>"><?php echo $data['pages']; ?></a>
+			<a href="/home/newest/<?php echo ($data['page']+1); ?>" class="more-newest-btn pag-nav">></a>
 		</div>
 	</div>
 	

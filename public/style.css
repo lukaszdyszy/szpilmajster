@@ -96,6 +96,7 @@ body{
 	background-color: var(--bg-primary);
 	color: var(--color-primary);
 }
+
 a{
 	text-decoration: none;
 	color: inherit;
@@ -103,6 +104,18 @@ a{
 }
 a:hover{
 	color: goldenrod;
+	cursor: pointer;
+}
+
+h1{
+	font-size: 1.25rem;
+	margin: 0;
+	padding: 20px 0 20px 0;
+}
+h2{
+	font-size: 1.15rem;
+	margin: 0;
+	padding: 15px 0;
 }
 /* =========================== */
 
@@ -201,18 +214,11 @@ li.menu-item{
 li.sub-menu-item{
 	padding-left: 20px;
 }
-a.menu-link{
-	padding-left: 10px;
-}
 
 /* ============================= */
 
 /* login form */
 /* ----------------------------- */
-h2{
-	margin: 0;
-	padding: 15px 0;
-}
 .login-form{
 	max-width: 400px;
 	margin: 30px auto;
@@ -273,10 +279,6 @@ main.page-content{
 section{
 	padding: 20px 0;
 }
-h1{
-	margin: 0;
-	padding: 15px 0;
-}
 /* ============================= */
 
 
@@ -314,13 +316,7 @@ img.slide-img{
 }
 
 h1.recommended-header{
-	font-size: 1.5rem;
 	text-align: center;
-	padding: 0 0 25px 0;
-}
-h2.excerpt-title{
-	font-size: 1.7rem;
-	padding: 7px 0 25px 0;
 }
 .author{
 	position: absolute;
@@ -341,10 +337,13 @@ h2.excerpt-title{
 .slider-pagination{
 	text-align: center;
 }
-.pag{
+.slider-pag{
 	display: inline-block;
 	font-size: 3rem;
 	padding: 0 15px;
+}
+.slider-pag:hover{
+	cursor: pointer;
 }
 /* ============================= */
 
@@ -363,7 +362,7 @@ article.article-excerpt{
 }
 img.article-excerpt-img{
 	width: 100%;
-	height: auto;
+	height: 100%;
 }
 .caption-hider{
 	overflow-y: hidden;
@@ -388,13 +387,31 @@ article.article-excerpt:hover .article-excerpt-caption{
 a.more-newest-btn{
 	display: block;
 	width: fit-content;
-	margin: 0 auto;
+	margin: 30px auto 0;
 	padding: 10px;
 	background-color: var(--bg-secondary);
 	border: 2px solid var(--color-primary);
 }
 a.more-newest-btn:hover{
 	border-color: goldenrod;
+}
+a.pag-nav{
+	display: inline-block;
+}
+.newest-pagination{
+	text-align: center;
+	margin: 50px 20px;
+	font-size: 1.2rem;
+	word-spacing: 20px;
+}
+input#page-number{
+	background-color: var(--bg-secondary);
+	border: none;
+	color: inherit;
+	text-align: center;
+}
+input#page-number:focus{
+	outline: none;
 }
 @media (max-width: 600px) {
 	.newest-grid{
@@ -473,7 +490,7 @@ a.more-newest-btn:hover{
 		padding: 0 15px 15px;
 		border-radius: 15px;
 	}
-	h2.login{
+	header.login-form-header{
 		position: relative;
 	}
 	i#close-form{

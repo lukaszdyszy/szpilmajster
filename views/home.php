@@ -1,4 +1,5 @@
 <?php include(VIEW.'includes/header.php');?>
+
 <main class="page-content">
 	<section class="recommended">
 		<div class="container">
@@ -7,7 +8,7 @@
 				<div class="slide-wrapper">
 					<?php foreach ($data['recommended'] as $art){ ?>
 						<div class="slide">
-							<img src="<?php echo ASSETS.'img/'.$art['image']; ?>" class="slide-img">
+							<img draggable="false" src="<?php echo ASSETS.'img/'.$art['image']; ?>" class="slide-img">
 							<div class="slide-caption">
 								<div class="cat-btn">
 									<a href="/category/<?php echo $art['category']; ?>">
@@ -29,7 +30,7 @@
 			</div>
 			<div class="slider-pagination">
 				<?php foreach ($data['recommended'] as $post){ ?>
-					<div class="pag">&bull;</div>
+					<div class="slider-pag">&bull;</div>
 				<?php } ?>
 			</div>
 		</div>
@@ -67,4 +68,5 @@
 		</div>
 	</section>
 </main>
+
 <?php include(VIEW.'includes/footer.php'); ?>

@@ -20,18 +20,40 @@
 		<div class="website-menu" id="website-menu">
 			<nav class="main-nav">
 				<ul class="menu main-menu">
-					<li class="menu-item main-menu-item">
+					<li class="menu-item">
 						<a class="menu-link" href="/">Strona główna</a>
 					</li>
-					<li class="menu-item main-menu-item sub-menu-link">
+					<li class="menu-item sub-menu-link">
 						<a class="menu-link">Kategorie <i class="fas fa-caret-down"></i></a>
 						<ul class="menu sub-menu">
-							<li class="menu-item sub-menu-item">MMORPG</li>
-							<li class="menu-item sub-menu-item">Strategiczne</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/RPG">RPG</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/Strategiczne">Strategiczne</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/MMO">MMO</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/FPS">FPS</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/Horror">Horror</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/Platformowe">Platformowe</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/Przygodowe">Przygodowe</a>
+							</li>
+							<li class="menu-item sub-menu-item">
+								<a href="/category/Inne">Inne</a>
+							</li>
 						</ul>
 					</li>
 					<?php if(isset($_SESSION['logged'])){ ?>
-						<li class="menu-item main-menu-item sub-menu-link">
+						<li class="menu-item sub-menu-link">
 							<a class="menu-link"><?php echo $_SESSION['logged']['username']; ?> <i class="fas fa-caret-down"></i></a>
 							<ul class="menu sub-menu">
 								<li class="menu-item sub-menu-item">Profil</li>
@@ -41,11 +63,11 @@
 							</ul>
 						</li>
 					<?php } else { ?>
-						<li class="menu-item main-menu-item">
-							<a class="menu-link" href="/user/register">Rejestracja</a>
+						<li class="menu-item">
+							<a href="/user/register">Rejestracja</a>
 						</li>
-						<li class="menu-item main-menu-item" id="open-form">
-							<a class="menu-link">Zaloguj</a>
+						<li class="menu-item" id="open-form">
+							<a>Zaloguj</a>
 						</li>
 					<?php } ?>
 				</ul>
@@ -72,7 +94,10 @@
 		<?php if(!isset($_SESSION['logged'])){ ?>
 			<div class="login-popup">
 				<form action="/user" method="post" class="login-form">
-					<h2 class="login">Logowanie <i class="far fa-times-circle" id="close-form"></i></h2>
+					<header class="login-form-header">
+						<h2>Logowanie</h2>
+						<i class="far fa-times-circle" id="close-form"></i>
+					</header>
 					<input type="text" name="user" class="login-form-input" placeholder="username...">
 					<input type="password" name="pass" class="login-form-input" placeholder="password">
 					<input type="submit" value="zaloguj" name="login" class="login-form-input">
