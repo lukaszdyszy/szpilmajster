@@ -2,7 +2,7 @@
 
 <main class="page-content">
 	<div class="container">
-		<div class="error"><?php echo $e->getMessage(); ?></div>
+		<?php echo $e->getMessage(); ?>
 	</div>
 </main>
 

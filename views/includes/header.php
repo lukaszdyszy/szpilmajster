@@ -8,6 +8,9 @@
 
 	<link rel="stylesheet" href="<?php echo ASSETS.'style.css'; ?>">
 	<script src="https://kit.fontawesome.com/bbec1a708a.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+	<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
 </head>
 <body class="theme-dark">
 	<header class="main-header">
@@ -62,6 +65,13 @@
 								</li>
 							</ul>
 						</li>
+						<?php if($_SESSION['logged']['id_role']<3){ ?>
+							<li class="menu-item">
+								<a href="/single/write">
+									Nowy artykuł
+								</a> 
+							</li>
+						<?php } ?>
 					<?php } else { ?>
 						<li class="menu-item">
 							<a href="/user/register">Rejestracja</a>

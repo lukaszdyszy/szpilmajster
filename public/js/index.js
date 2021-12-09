@@ -11,13 +11,26 @@ if(sliderContainer){
 	sliderContainer.addEventListener('click', () => {mySlider.autoChange=false;});
 	
 	// slider pagination
-	const dots = document.querySelectorAll('.pag');
+	const dots = document.querySelectorAll('.slider-pag');
 	dots.forEach((el, index) => {
 		el.addEventListener('click', () => {
 			mySlider.changeSlide(index);
 			mySlider.autoChange = false;
 		});
 	});
+}
+/* ====================================================== */
+
+/* ====================== Markdown ====================== */
+const articleContent = document.getElementById('article-content');
+if(articleContent){
+	const md = window.markdownit();
+	articleContent.innerHTML = md.render(articleContent.innerHTML); 
+}
+
+const newArticleContent = document.getElementById('new-article-content');
+if(newArticleContent){
+	const mde = new EasyMDE({element: newArticleContent});
 }
 /* ====================================================== */
 

@@ -10,7 +10,7 @@ class User extends Controller
 
 			$result = $userModel->login($_POST['user'], $_POST['pass']);
 			if(!$result){
-				$_SESSION['messages'] = array('Błędny login lub');
+				$_SESSION['messages'] = array('Błędny login lub hasło');
 			} else {
 				$_SESSION['logged'] = $result;
 			}

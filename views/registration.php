@@ -2,23 +2,35 @@
 
 <main class="page-content">
 	<div class="container">
-		<form action="/user/register" method="post">
-			<label for="new-username">Nazwa użytkownika:</label>
-			<input type="text" name="username" id="new-username" value="<?php echo $_POST['username'] ?? ''; ?>">
-			<span class="error"><?php echo $data['errors']['username']; ?></span>
+		<h1>Rejestracja</h1>
+		<form action="/user/register" method="post" class="register-form">
 
-			<br>
+			<div class="register-input-row">
+				<label for="new-username">Nazwa użytkownika:</label>
+				<input 	type="text" 
+						name="username" 
+						id="new-username" 
+						value="<?php echo $_POST['username'] ?? ''; ?>"
+						class="register-input">
+				<span class="error"><?php echo $data['errors']['username']; ?></span>
+			</div>
 
-			<label for="new-password">Hasło: </label>
-			<input type="password" name="password" id="new-password" value="<?php echo $_POST['password'] ?? ''; ?>">
-			<span class="error"><?php echo $data['errors']['password']; ?></span>
-			
-			<br>
+			<div class="register-input-row">
+				<label for="new-password">Hasło: </label>
+				<input 	type="password" 
+						name="password" 
+						id="new-password" 
+						value="<?php echo $_POST['password'] ?? ''; ?>"
+						class="register-input">
+				<span class="error"><?php echo $data['errors']['password']; ?></span>
+			</div>
 
-			<label for="new-password-2">Powtórz hasło: </label>
-			<input type="password" name="password2" id="new-password-2">
+			<div class="register-input-row">
+				<label for="new-password-2">Powtórz hasło: </label>
+				<input type="password" name="password2" id="new-password-2" class="register-input">
+			</div>
 
-			<input type="submit" value="zarejestruj się" name="register">
+			<input type="submit" value="zarejestruj się" name="register" class="register-submit">
 		</form>
 	</div>
 </main>

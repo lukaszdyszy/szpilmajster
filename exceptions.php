@@ -22,6 +22,27 @@ class InternalErrorException extends FunctionalityException{ // błąd servera
 		$this->status = 500;
 		$this->message = 'Ups! Coś poszło nie tak';
 	}
-}	
+}
+
+class BadRequestException extends FunctionalityException{ // błędne dane w formularzu
+	public function __construct($msg){
+		$this->status = 400;
+		$this->message = $msg;
+	}
+}
+class FileUploadException extends FunctionalityException{ // błąd w przesłaniu pliku
+	public function __construct($status, $msg){
+		$this->status = $status;
+		$this->message = $msg;
+	}
+}
+
+class UnauthorizedException extends FunctionalityException{ // dostęp zabroniony
+	public function __construct(){
+		$this->status = 403;
+		$this->message = 'Brak uprawnień.';
+	}
+}
+
 
 ?>

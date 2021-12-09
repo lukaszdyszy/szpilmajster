@@ -10,13 +10,10 @@ class Usermodel extends Model
 
 		$result = $stmt->fetch();
 		if(password_verify($pass, $result['password'])){
-			$stmt = $this->db->prepare("SELECT name FROM roles WHERE id_role=:id");
-			$stmt->execute(array(':id' => $result['id']));
-			$roleName = $stmt->fetch()['name'];
 			return array(
 				'id_user' 	=> $result['id_user'],
 				'username' 	=> $result['username'],
-				'role'		=> $roleName
+				'id_role'	=> $result['id_role']
 			);
 		} 
 		return false;

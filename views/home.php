@@ -57,7 +57,7 @@
 									</a>
 								</h2>
 								<div class="author"><?php 
-									echo '<a href="/user/articles/1">'.$post['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
+									echo '<a href="/user/articles/1">'.$art['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
 								?></div>
 							</div>
 						</article>

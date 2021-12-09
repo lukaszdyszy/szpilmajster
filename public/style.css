@@ -219,6 +219,15 @@ li.sub-menu-item{
 
 /* login form */
 /* ----------------------------- */
+input{
+	border: none;
+	background-color: var(--bg-secondary);
+	color: var(--color-primary);
+}
+input:focus {
+	outline: none;
+}
+
 .login-form{
 	max-width: 400px;
 	margin: 30px auto;
@@ -227,21 +236,49 @@ li.sub-menu-item{
 }
 .login-form-input{
 	width: 100%;
-	border: none;
 	margin: 5px 0;
 	padding: 5px;
 	border-radius: 10px;
 	background-color: var(--bg-primary);
-	color: var(--color-primary);
-}
-.login-form-input:focus{
-	outline: none;
 }
 .login-popup{
 	display: none;
 }
 #open-form{
 	display: none;
+}
+/* ============================= */
+
+/* register form */
+/* ----------------------------- */
+form.register-form{
+	border-top: 1px groove var(--color-primary);
+	padding: 5px;
+}
+.register-input-row{
+	margin-bottom: 20px;
+}
+.register-input-row *{
+	display: inline-block;
+}
+.register-input-row label{
+	width: 200px;
+}
+input.register-input{
+	padding: 5px;
+}
+.error{
+	color: red;
+}
+input.register-submit{
+	border: 2px solid var(--color-primary);
+	padding: 7px;
+	margin: 25px 0 0 0;
+}
+@media (max-width: 450px){
+	input.register-input{
+		width: 100%;
+	}
 }
 /* ============================= */
 
@@ -362,7 +399,7 @@ article.article-excerpt{
 }
 img.article-excerpt-img{
 	width: 100%;
-	height: 100%;
+	aspect-ratio: 16/9;
 }
 .caption-hider{
 	overflow-y: hidden;
@@ -405,13 +442,9 @@ a.pag-nav{
 	word-spacing: 20px;
 }
 input#page-number{
-	background-color: var(--bg-secondary);
 	border: none;
-	color: inherit;
 	text-align: center;
-}
-input#page-number:focus{
-	outline: none;
+	background-color: var(--bg-secondary);
 }
 @media (max-width: 600px) {
 	.newest-grid{
@@ -420,6 +453,45 @@ input#page-number:focus{
 }
 /* ============================= */
 
+/* Add article */
+/* ----------------------------- */
+form#add-article-form{
+	padding: 5px;
+}
+.editor-toolbar{
+	background-color: #F4F6F8;
+}
+.editor-toolbar button{
+	color: #222222;
+}
+input.add-article-input{
+	display: block;
+	width: 100%;
+	margin: 15px 0;
+}
+.add-input-row{
+	margin: 15px 0;
+}
+.add-input-row input{
+	width: 100%;
+	padding: 7px;
+	border-radius: 15px;
+}
+/* ============================= */
+
+/* Single view */
+/* ----------------------------- */
+#article-content img, img.single-image{
+	width: 100%;
+	height: auto;
+}
+.single-info{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px groove var(--color-primary);
+	padding-bottom: 10px;
+}
+/* ============================= */
 
 /* desktop */
 /* ----------------------------- */

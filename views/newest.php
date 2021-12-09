@@ -16,7 +16,7 @@
 								</a>
 							</div>
 							<h2 class="excerpt-title">
-								<a href="/single/<?php echo $art['id_article']; ?>">
+								<a href="/single/read/<?php echo $art['id_article']; ?>">
 									<?php echo $art['title']; ?>
 								</a>
 							</h2>
