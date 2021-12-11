@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT'].'/views/includes/header.php'); ?>
+<?php include(VIEW.'includes/header.php'); ?>
 
 <main class="page-content">
 	<div class="container">
@@ -6,4 +6,4 @@
 	</div>
 </main>
 
-<?php include($_SERVER['DOCUMENT_ROOT'].'/views/includes/footer.php'); ?>
+<?php include(VIEW.'includes/footer.php'); ?>
