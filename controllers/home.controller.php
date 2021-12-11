@@ -22,7 +22,7 @@ class Home extends Controller
 		}
 	}
 	
-	// wyświetlanie strony artykułów o najnowszego (home/newest/:nr_strony) - 6 artykułów na stronę (albo więcej, jak tam chcecie XD);
+	// wyświetlanie strony artykułów o najnowszego (home/newest/:nr_strony) - 6 artykułów na stronę
 	public function newest(){
 		try {
 			$articleModel = $this->loadModel('article');

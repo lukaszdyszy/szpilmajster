@@ -1,11 +1,12 @@
 <?php
 	function splitURL(){
-		return  explode('/', trim(explode('?', $_SERVER['REQUEST_URI'])[0], '/'));
+		// zajebisty łańcuszek XDDDD
+		return  explode('/', trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
 	}
 
 	function uploadFile($fileName){
 		$file_info = pathinfo($_FILES[$fileName]['name']);
-		$target = ROOT.'public/img/'.$file_info['filename'];
+		$target = IMG_FOLDER.$file_info['filename'];
 		$i = 1;
 
 		// zmień nazwę jeżeli plik istnieje na serwerze

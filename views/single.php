@@ -9,7 +9,9 @@
 			<div class="single-date">
 				<?php
 					echo explode(' ', $data['date_added'])[0];
-					if($data['date-added'] != $data['date-modified']) echo 'edytowano: '.$data['date-modified'];
+					if($data['date_added'] != $data['date_modified']) {
+						echo '<br>edytowano: '.$data['date_modified'];
+					}
 				?>
 			</div>
 		</div>

@@ -491,6 +491,9 @@ input.add-article-input{
 	border-bottom: 1px groove var(--color-primary);
 	padding-bottom: 10px;
 }
+.single-date{
+	text-align: right;
+}
 /* ============================= */
 
 /* desktop */

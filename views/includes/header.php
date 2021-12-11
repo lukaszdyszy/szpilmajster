@@ -4,33 +4,47 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title><?php echo $data['pageTitle']; ?></title>
 
+	<!-- Nasze style -->
 	<link rel="stylesheet" href="<?php echo ASSETS.'style.css'; ?>">
+
+	<!-- FontAwesome - ikonki -->
 	<script src="https://kit.fontawesome.com/bbec1a708a.js" crossorigin="anonymous"></script>
 
+	<!-- Interpreter i edytor MD - pisanie i wyświetlanie postów -->
 	<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
 	<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
 </head>
+
 <body class="theme-dark">
+	<!-- Górny pasek strony -->
 	<header class="main-header">
-		<div class="website-logo">Logo</div>
+
+		<!-- Logo -->
+		<div class="website-logo"><a class="menu-link" href="<?php echo HREF; ?>">Logo</a></div>
+
+		<!-- Moblie menu toggler -->
 		<div class="menu-toggle" id="menu-toggle">
 			<div class="hamburger-bar top"></div>
 			<div class="hamburger-bar middle"></div>
 			<div class="hamburger-bar bottom"></div>
 		</div>
+
+		<!-- Menu główne -->
 		<div class="website-menu" id="website-menu">
 			<nav class="main-nav">
 				<ul class="menu main-menu">
 					<li class="menu-item">
-						<a class="menu-link" href="/">Strona główna</a>
+						<a class="menu-link" href="<?php echo HREF; ?>">Strona główna</a>
 					</li>
 					<li class="menu-item sub-menu-link">
 						<a class="menu-link">Kategorie <i class="fas fa-caret-down"></i></a>
 						<ul class="menu sub-menu">
 							<li class="menu-item sub-menu-item">
-								<a href="/category/RPG">RPG</a>
+								<!-- Dobra ścieżka - loop -->
+								<a href="<?php echo HREF; ?>category/RPG">RPG</a> 
 							</li>
 							<li class="menu-item sub-menu-item">
 								<a href="/category/Strategiczne">Strategiczne</a>
@@ -55,26 +69,32 @@
 							</li>
 						</ul>
 					</li>
+
+					<!-- Pozycje menu dla zalogowanego uśytkownika -->
 					<?php if(isset($_SESSION['logged'])){ ?>
 						<li class="menu-item sub-menu-link">
 							<a class="menu-link"><?php echo $_SESSION['logged']['username']; ?> <i class="fas fa-caret-down"></i></a>
 							<ul class="menu sub-menu">
 								<li class="menu-item sub-menu-item">Profil</li>
 								<li class="menu-item sub-menu-item">
-									<a class="menu-link" href="/user/logout">Wyloguj</a>
+									<a class="menu-link" href="<?php echo HREF; ?>user/logout">Wyloguj</a>
 								</li>
 							</ul>
 						</li>
+
+						<!-- Tylko dla mogących pisać artykuły -->
 						<?php if($_SESSION['logged']['id_role']<3){ ?>
 							<li class="menu-item">
-								<a href="/single/write">
+								<a href="<?php echo HREF; ?>single/write">
 									Nowy artykuł
 								</a> 
 							</li>
 						<?php } ?>
+					
+					<!-- Tylko dla niezalogowanych -->
 					<?php } else { ?>
 						<li class="menu-item">
-							<a href="/user/register">Rejestracja</a>
+							<a href="<?php echo HREF; ?>user/register">Rejestracja</a>
 						</li>
 						<li class="menu-item" id="open-form">
 							<a>Zaloguj</a>
@@ -82,8 +102,10 @@
 					<?php } ?>
 				</ul>
 			</nav>
+
+			<!-- Formularz logowania mobilny -->
 			<?php if(!isset($_SESSION['logged'])){ ?>
-				<form action="/user" method="post" class="login-form form-moblie">
+				<form action="<?php echo HREF; ?>user" method="post" class="login-form form-moblie">
 					<h2>Logowanie</h2>
 					<input type="text" name="user" class="login-form-input" placeholder="username...">
 					<input type="password" name="pass" class="login-form-input" placeholder="password">
@@ -100,10 +122,10 @@
 			</div>
 		</div>
 
-		<!-- desktop login -->
+		<!-- Formularz logowania desktop -->
 		<?php if(!isset($_SESSION['logged'])){ ?>
 			<div class="login-popup">
-				<form action="/user" method="post" class="login-form">
+				<form action="<?php echo HREF; ?>user" method="post" class="login-form">
 					<header class="login-form-header">
 						<h2>Logowanie</h2>
 						<i class="far fa-times-circle" id="close-form"></i>
@@ -115,7 +137,7 @@
 			</div>
 		<?php } ?>
 
-		<!-- message -->
+		<!-- messages -->
 		<div class="messages">
 			<?php foreach ($_SESSION['messages'] as $msg) {?>
 				<div class="message">
