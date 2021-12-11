@@ -124,10 +124,10 @@
 
 		<!-- messages -->
 		<div class="messages">
-			<?php foreach ($_SESSION['messages'] as $msg) {?>
+			<?php if(isset($_SESSION['messages'])){foreach ($_SESSION['messages'] as $msg) {?>
 				<div class="message">
 					<?php echo $msg; ?>
 				</div>
-			<?php } $_SESSION['messages'] = array(); ?>
+			<?php } $_SESSION['messages'] = array(); } ?>
 		</div>
 	</header>
