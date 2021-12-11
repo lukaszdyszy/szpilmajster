@@ -1,5 +1,5 @@
 <?php
-require(CONTROLLER.'controller.php');
+require_once(CONTROLLER.'controller.php');
 
 class Home extends Controller
 {
@@ -11,18 +11,20 @@ class Home extends Controller
 			$newest = $articleModel->getPage(1);
 			$recommended = $articleModel->getRecommended();
 
-			$data = array(
+			$this->data = array(
 				'recommended'	=> $recommended,
-				'newest'		=> $newest
+				'articles'		=> $newest
 			);
 
-			$this->render($data);
-		} catch (Exception $e) {
-			echo $e->getMessage();
+			$this->render();
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (Exception $e){
+			throw new InternalErrorException();
 		}
 	}
 	
-	// wyświetlanie strony artykułów o najnowszego (home/newest/:nr_strony) - 6 artykułów na stronę
+	// wyświetlanie strony artykułów od najnowszego (home/newest/:nr_strony) - 6 artykułów na stronę
 	public function newest(){
 		try {
 			$articleModel = $this->loadModel('article');
@@ -34,14 +36,14 @@ class Home extends Controller
 			
 			$newest = $articleModel->getPage($page);
 
-			$data = array(
-				'newest'	=> $newest,
+			$this->data = array(
+				'articles'	=> $newest,
 				'pages'		=> $pages,
 				'page'		=> $page
 			);
 
 			$this->loadView('newest');
-			$this->render($data);
+			$this->render();
 		} catch (PDOException $e) {
 			throw $e;
 		} catch (Exception $e) {

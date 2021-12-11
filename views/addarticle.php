@@ -3,13 +3,21 @@
 <main class="page-content">
 	<div class="container">
 		<div class="error"><?php echo $data['error']; ?></div>
-		<form action="/single/write" method="post" enctype="multipart/form-data" id="add-article-form">
+		<form action="<?php echo HREF; ?>single/write" method="post" enctype="multipart/form-data" id="add-article-form">
 			<div class="add-input-row">
 				<label for="category-select">Kateogria</label>
 				<select name="category" id="category-select">
-					<option value="1" <?php if($_POST['category']==='RPG') echo 'selected'; ?>>RPG</option>
-					<option value="9" <?php if($_POST['category']==='FPS') echo 'selected'; ?>>FPS</option>
-					<option value="13" <?php if($_POST['category']==='Inne') echo 'selected'; ?>>Inne</option>
+					<?php
+						foreach ($this->header['categories'] as $category) {
+							?>
+								<option 
+									value="<?php echo $category['id_category']; ?>" 
+									<?php if($_POST['category']===$category['id_category']) echo 'selected'; ?>>
+										<?php echo $category['name']; ?>
+								</option>
+							<?php
+						}
+					?>
 				</select>
 			</div>
 			<div class="add-input-row">

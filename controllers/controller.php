@@ -4,9 +4,18 @@ abstract class Controller
 {
 	private $view;
 	protected $params;
+	protected $data = array();
+	protected $header = array();
 
 	public function __construct($params){
 		$this->params = $params;
+		$this->header['title'] = 'Szpilmajster - ';
+
+		$catModel = $this->loadModel('categorymodel');
+
+		$this->header['categories'] = $catModel->getCategories();
+
+		unset($catModel);
 	}
 
 	abstract public function index();
@@ -32,7 +41,8 @@ abstract class Controller
 		}
 	}
 
-	protected function render($data){
+	protected function render(){
+		$data = $this->data;
 		include($this->view);
 	}
 

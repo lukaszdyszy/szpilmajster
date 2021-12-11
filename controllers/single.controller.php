@@ -1,5 +1,5 @@
 <?php
-require(CONTROLLER.'controller.php');
+require_once(CONTROLLER.'controller.php');
 
 class Single extends Controller
 {
@@ -13,8 +13,11 @@ class Single extends Controller
 			$articleModel = $this->loadModel('article');
 			$article = $articleModel->getArticleById($this->params[0]);
 			if(!$article) throw new NotFoundException();
+			
+			$this->data['article'] = $article;
+
 			$this->loadView('single');
-			$this->render($article);
+			$this->render();
 		} catch (PDOException $e) {
 			throw $e;
 		} catch (FunctionalityException $e) {
@@ -52,7 +55,9 @@ class Single extends Controller
 				$content = $_POST['content'];
 
 				// kategoria
-				$category = intval($_POST['category']);
+				if(!empty($_POST['category'])){
+					$category = intval($_POST['category']);
+				}
 				
 				// prześlij plik, jeśli istnieje
 				if(is_uploaded_file($_FILES['article-image']['tmp_name'])){
@@ -67,20 +72,22 @@ class Single extends Controller
 				$_SESSION['messages'] = array('Artykuł pomyślnie dodany');
 				header('Location: /single/read/'.$inserted);
 			}
-
-			// w przeciwnym razie wyświetl formularz
-			$this->loadView('addarticle');
-			$this->render($data);
+			
 		} catch (FunctionalityException $e) {
-			$this->loadView('addarticle');
 			http_response_code($e->getStatus());
-			$data['error'] = $e->getMessage();
-			$this->render($data);
+			$this->data['error'] = $e->getMessage();
 		} catch (PDOException $e) {
-			throw $e;
+			if($e->getCode() === '23000'){
+				$this->data['error'] = 'Kategoria nie istnieje';
+			} else {
+				throw $e;
+			}
 		} catch (Exception $e) {
 			throw new IternalErrorException();
 		}
+
+		$this->loadView('addarticle');
+		$this->render();
 	}
 
 	// modyfikacja artykułu (single/edit)

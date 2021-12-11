@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title><?php echo $data['pageTitle']; ?></title>
+	<title><?php echo $this->header['title']; ?></title>
 
 	<!-- Nasze style -->
 	<link rel="stylesheet" href="<?php echo ASSETS.'style.css'; ?>">
@@ -42,31 +42,16 @@
 					<li class="menu-item sub-menu-link">
 						<a class="menu-link">Kategorie <i class="fas fa-caret-down"></i></a>
 						<ul class="menu sub-menu">
-							<li class="menu-item sub-menu-item">
-								<!-- Dobra ścieżka - loop -->
-								<a href="<?php echo HREF; ?>category/RPG">RPG</a> 
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/Strategiczne">Strategiczne</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/MMO">MMO</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/FPS">FPS</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/Horror">Horror</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/Platformowe">Platformowe</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/Przygodowe">Przygodowe</a>
-							</li>
-							<li class="menu-item sub-menu-item">
-								<a href="/category/Inne">Inne</a>
-							</li>
+							<?php
+								foreach ($this->header['categories'] as $category) {
+									?>
+									<li class="menu-item sub-menu-item">
+										<!-- Dobra ścieżka - loop -->
+										<a href="<?php echo HREF.'category/'.$category['name'] ?>"><?php echo $category['name']; ?></a> 
+									</li>
+									<?php
+								}
+							?>
 						</ul>
 					</li>
 

@@ -1,5 +1,5 @@
 <?php
-require(CONTROLLER.'controller.php');
+require_once(CONTROLLER.'controller.php');
 
 class User extends Controller
 {

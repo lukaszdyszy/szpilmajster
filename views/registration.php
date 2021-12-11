@@ -3,7 +3,7 @@
 <main class="page-content">
 	<div class="container">
 		<h1>Rejestracja</h1>
-		<form action="/user/register" method="post" class="register-form">
+		<form action="<?php echo HREF; ?>user/register" method="post" class="register-form">
 
 			<div class="register-input-row">
 				<label for="new-username">Nazwa użytkownika:</label>

@@ -1,5 +1,5 @@
 <?php
-require(MODEL.'model.php');
+require_once(MODEL.'model.php');
 
 class Article extends Model
 {

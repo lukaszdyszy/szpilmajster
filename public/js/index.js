@@ -81,6 +81,17 @@ if(openFormBtn){
 	});
 }
 
+// pagination
+const pagination = document.getElementById('page-number');
+const pagLink = document.getElementById('page-hidden');
+if(pagination){
+	pagination.addEventListener('keydown', e => {
+		if(e.key === 'Enter'){
+			pagLink.href += e.target.value;
+			pagLink.click();
+		}
+	});
+}
 
 // messages
 const messages = document.querySelectorAll('.message');
