@@ -15,7 +15,7 @@ class User extends Controller
 				$_SESSION['logged'] = $result;
 			}
 
-			header('Location: /home');
+			header('Location: '.HREF);
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -24,7 +24,7 @@ class User extends Controller
 	// wyloguj
 	public function logout(){
 		session_destroy();
-		header('Location: /home');
+		header('Location: '.HREF);
 	}
 
 	// rejestracja
@@ -42,7 +42,7 @@ class User extends Controller
 				} else {
 					$userModel->register($_POST['username'], $_POST['password']);
 					$_SESSION['messages'] = array('Pomyślna rejestracja');
-					header('Location: /home');
+					header('Location: '.HREF);
 				}
 			}
 			$this->loadView('registration');

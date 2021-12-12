@@ -70,7 +70,7 @@ class Single extends Controller
 				
 				// sukces
 				$_SESSION['messages'] = array('Artykuł pomyślnie dodany');
-				header('Location: /single/read/'.$inserted);
+				header('Location: '.HREF.'single/read/'.$inserted);
 			}
 			
 		} catch (FunctionalityException $e) {

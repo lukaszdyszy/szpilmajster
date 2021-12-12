@@ -5,7 +5,6 @@ abstract class Controller
 	private $view;
 	protected $params;
 	protected $data = array();
-	protected $header = array();
 
 	public function __construct($params){
 		$this->params = $params;
