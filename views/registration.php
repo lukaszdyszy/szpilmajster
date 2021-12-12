@@ -20,7 +20,6 @@
 				<input 	type="password" 
 						name="password" 
 						id="new-password" 
-						value="<?php echo $_POST['password'] ?? ''; ?>"
 						class="register-input">
 				<span class="error"><?php if(isset($data['errors']['password'])) echo $data['errors']['password']; ?></span>
 			</div>

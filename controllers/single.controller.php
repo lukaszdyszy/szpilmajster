@@ -29,8 +29,6 @@ class Single extends Controller
 
 	// dodawanie nowego artykułu (single/write)
 	public function write(){
-		$data = array('errors' => '');
-
 		$title = '';
 		$content = '';
 		$category = 13;
