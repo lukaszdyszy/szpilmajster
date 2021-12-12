@@ -206,6 +206,7 @@ ul.sub-menu{
 }
 li.menu-item:hover ul.sub-menu{
 	display: block;
+	z-index: 1001;
 }
 li.menu-item{
 	border-bottom: 1px solid var(--border-color);
