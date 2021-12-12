@@ -35,4 +35,18 @@
 
 		return end(explode('/', $target));
 	}
+
+	function initHeader(){
+		global $db;
+		$header = array();
+		require_once(MODEL.'categorymodel.model.php');
+
+		$catModel = new Categorymodel($db);
+		
+		$header['categories'] = $catModel->getCategories();
+
+		$header['title'] = 'Szpilmajster.pl';
+
+		return $header;
+	}
 ?>

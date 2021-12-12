@@ -9,13 +9,6 @@ abstract class Controller
 
 	public function __construct($params){
 		$this->params = $params;
-		$this->header['title'] = 'Szpilmajster - ';
-
-		$catModel = $this->loadModel('categorymodel');
-
-		$this->header['categories'] = $catModel->getCategories();
-
-		unset($catModel);
 	}
 
 	abstract public function index();

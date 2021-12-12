@@ -25,6 +25,7 @@
 	
 		$controller = strtolower(empty($uri[0]) ? 'home' : $uri[0]);	// controller - default 'home'
 		$action		= strtolower(empty($uri[1]) ? 'index' : $uri[1]);	// action - default index
+		$header		= initHeader();		// data for menu - categories, page's title
 
 		// error 404 jeśli controller nie istnieje
 		if(!file_exists(CONTROLLER.$controller.'.controller.php')) throw new NotFoundException();

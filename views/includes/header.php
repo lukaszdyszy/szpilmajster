@@ -1,3 +1,4 @@
+<?php global $header; ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title><?php echo $this->header['title']; ?></title>
+	<title><?php echo $header['title']; ?></title>
 
 	<!-- Nasze style -->
 	<link rel="stylesheet" href="<?php echo ASSETS.'style.css'; ?>">
@@ -43,7 +44,7 @@
 						<a class="menu-link">Kategorie <i class="fas fa-caret-down"></i></a>
 						<ul class="menu sub-menu">
 							<?php
-								foreach ($this->header['categories'] as $category) {
+								foreach ($header['categories'] as $category) {
 									?>
 									<li class="menu-item sub-menu-item">
 										<!-- Dobra ścieżka - loop -->
