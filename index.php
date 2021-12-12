@@ -1,14 +1,14 @@
 <?php
 	/** define paths ---------------------- */
-	define('INDEX', /*podfolder w którym znajduje się  strona here--->*/''.DIRECTORY_SEPARATOR);
-	define('ROOT', $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.INDEX);
+	define('INDEX', /*podfolder w którym znajduje się  strona here--->*/'');
+	define('ROOT', $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.INDEX.DIRECTORY_SEPARATOR);
 	define('CONTROLLER', ROOT.'controllers'.DIRECTORY_SEPARATOR);
 	define('VIEW', ROOT.'views'.DIRECTORY_SEPARATOR);
 	define('ERROR', VIEW.'errors'.DIRECTORY_SEPARATOR);
 	define('MODEL', ROOT.'models'.DIRECTORY_SEPARATOR);
 	define('IMG_FOLDER', ROOT.'public'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR);
-	define('HREF', 'http://'.$_SERVER['HTTP_HOST'].DIRECTORY_SEPARATOR.INDEX);	// link do strony głównej
-	define('ASSETS', HREF.'public'.DIRECTORY_SEPARATOR);
+	define('HREF', 'http://'.$_SERVER['HTTP_HOST'].'/'.INDEX.'/');	// link do strony głównej
+	define('ASSETS', HREF.'public'.'/');
 	/** =================================== */
 
 	session_start();

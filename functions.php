@@ -1,7 +1,7 @@
 <?php
 	function splitURL(){
 		// zajebisty łańcuszek XDDDD
-		return  explode(DIRECTORY_SEPARATOR, trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
+		return  explode('/', trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
 	}
 
 	function uploadFile($fileName){
