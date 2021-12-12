@@ -12,7 +12,7 @@
 						id="new-username" 
 						value="<?php echo $_POST['username'] ?? ''; ?>"
 						class="register-input">
-				<span class="error"><?php echo $data['errors']['username']; ?></span>
+				<span class="error"><?php if(isset($data['errors']['username'])) echo $data['errors']['username']; ?></span>
 			</div>
 
 			<div class="register-input-row">
@@ -22,7 +22,7 @@
 						id="new-password" 
 						value="<?php echo $_POST['password'] ?? ''; ?>"
 						class="register-input">
-				<span class="error"><?php echo $data['errors']['password']; ?></span>
+				<span class="error"><?php if(isset($data['errors']['password'])) echo $data['errors']['password']; ?></span>
 			</div>
 
 			<div class="register-input-row">

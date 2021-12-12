@@ -1,7 +1,7 @@
 <?php
 	function splitURL(){
 		// zajebisty łańcuszek XDDDD
-		return  explode('/', trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
+		return  explode(DIRECTORY_SEPARATOR, trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
 	}
 
 	function uploadFile($fileName){
@@ -33,7 +33,8 @@
 			throw new FileUploadException(500, 'Wystąpił błąd podczas przysyłania pliku.');
 		}
 
-		return end(explode('/', $target));
+		$uploaded = explode(DIRECTORY_SEPARATOR, $target);
+		return end($uploaded);
 	}
 
 	function initHeader(){
