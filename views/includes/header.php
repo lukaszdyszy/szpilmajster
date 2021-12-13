@@ -48,7 +48,7 @@
 									?>
 									<li class="menu-item sub-menu-item">
 										<!-- Dobra ścieżka - loop -->
-										<a href="<?php echo HREF.'category/'.$category['name'] ?>"><?php echo $category['name']; ?></a> 
+										<a href="<?php echo HREF.'home/category/'.$category['name'] ?>"><?php echo $category['name']; ?></a> 
 									</li>
 									<?php
 								}

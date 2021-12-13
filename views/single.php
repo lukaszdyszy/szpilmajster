@@ -16,6 +16,9 @@
 			</div>
 		</div>
 		<div id="article-content"><?php echo $data['article']['content']; ?></div>
+
+		<!-- Sekcja komentarzy -->
+		<section class="comments"></section>
 	</div>
 </main>
 

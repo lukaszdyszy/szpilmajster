@@ -6,7 +6,7 @@
 				<img src="<?php echo ASSETS.'img/'.$art['image']; ?>" alt="<?php echo $art['title']; ?>" class="article-excerpt-img">
 				<div class="article-excerpt-caption">
 					<div class="cat-btn">
-						<a href="<?php echo HREF; ?>category/<?php echo $art['category']; ?>">
+						<a href="<?php echo HREF; ?>home/category/<?php echo $art['category']; ?>">
 							<?php echo $art['category']; ?>
 						</a>
 					</div>
@@ -22,25 +22,3 @@
 			</article>
 	<?php } ?>
 </div>
-
-<!-- Paginacja -->
-<?php 
-	global $controller, $action;
-	$controllerClass = get_class($controller);
-	if($action === 'index' && $controllerClass === 'Home'){
-		echo '<a href="'.HREF.'home/newest/2" class="more-newest-btn">Więcej</a>';
-	} else {
-?>
-<div class="newest-pagination">
-	<a href="<?php echo HREF.$controllerClass.'/'.$action.'/'; ?>" id="page-hidden" style="visibility: hidden;"></a>
-	<a href="<?php echo HREF.$controllerClass.'/'.$action.'/'.($data['page']-1); ?>" class="more-newest-btn pag-nav"><</a>
-	<input id="page-number" type="number" 
-		min="1" 
-		max="<?php echo $data['pages']; ?>" 
-		value="<?php echo $data['page']; ?>"
-	>
-	z
-	<a href="<?php echo HREF.$controllerClass.'/'.$action.'/'.$data['pages']; ?>"><?php echo $data['pages']; ?></a>
-	<a href="<?php echo HREF.$controllerClass.'/'.$action.'/'.($data['page']+1); ?>" class="more-newest-btn pag-nav">></a>
-</div>
-<?php } ?>

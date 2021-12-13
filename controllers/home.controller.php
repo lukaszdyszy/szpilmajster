@@ -50,5 +50,35 @@ class Home extends Controller
 			throw new InternalErrorException();
 		}
 	}
+
+	// artykuły z konkretnej kategorii
+	public function category()
+	{
+		try {
+			$articleModel = $this->loadModel('article');
+
+			$category	= $this->params[0];
+			$page		= (intval($this->params[1])===0 || empty($this->params[1])) ? 1 : intval($this->params[1]);
+
+			$pages = ceil($articleModel->getNrOfArticlesCategory($category)['number']/6);
+			if($pages < $page) $page = $pages;
+
+			$articles = $articleModel->getPageCategory($page, $category);
+
+			$this->data = array(
+				'articles'	=> $articles,
+				'pages'		=> $pages,
+				'page'		=> $page,
+				'category'	=> $category
+			);
+
+			$this->loadView('category');
+			$this->render();
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (Exception $e){
+			throw new InternalErrorException();
+		}
+	}
 }
 ?>

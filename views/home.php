@@ -12,7 +12,7 @@
 							<img draggable="false" src="<?php echo ASSETS.'img/'.$art['image']; ?>" class="slide-img">
 							<div class="slide-caption">
 								<div class="cat-btn">
-									<a href="<?php echo HREF; ?>category/<?php echo $art['category']; ?>">
+									<a href="<?php echo HREF; ?>home/category/<?php echo $art['category']; ?>">
 										<?php echo $art['category']; ?>
 									</a>
 								</div>
@@ -45,9 +45,10 @@
 			
 			<?php include(VIEW.'includes/articlesgrid.php'); ?>
 
+			<a href="/home/newest/2" class="more-newest-btn">Więcej</a>
+
 		</div>
 	</section>
 </main>
 
-<!-- <a href="/home/newest/2" class="more-newest-btn">Więcej</a> -->
 <?php include(VIEW.'includes/footer.php'); ?>

@@ -2,12 +2,12 @@
 <main class="page-content">
 
 	<div class="container">
-		<h1>Najnowsze</h1>
+		<h1>Kategoria: <?php echo $data['category']; ?></h1>
 
 		<?php include(VIEW.'includes/articlesgrid.php'); ?>
 		
 		<!-- Paginacja -->
-		<?php include(VIEW.'includes/homepagination.php'); ?>
+		<?php include(VIEW.'includes/categorypagination.php'); ?>
 
 	</div>
 	
