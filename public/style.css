@@ -205,7 +205,7 @@ ul.sub-menu{
 	display: none;
 }
 li.menu-item:hover ul.sub-menu{
-	display: block;
+	display: block !important;
 }
 li.menu-item{
 	border-bottom: 1px solid var(--border-color);
