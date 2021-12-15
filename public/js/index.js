@@ -101,6 +101,25 @@ messages.forEach(msg => {
 	});
 });
 
+/* ==================== User profile ================== */
+const userSwitches = document.querySelectorAll('.user-section-switch > a.btn');
+const userComments = document.querySelector('.user-comments');
+const userArticles = document.querySelector('.user-articles');
+userSwitches.forEach(el => {
+	if(el.attributes.href.value == '#comments'){
+		el.addEventListener('click', () => {
+			userArticles.style.display = 'none';
+			userComments.style.display = 'block';
+		});
+	} else {
+		el.addEventListener('click', () => {
+			userArticles.style.display = 'block';
+			userComments.style.display = 'none';
+		});
+	}
+})
+/* ==================================================== */
+
 window.addEventListener('load', () => {
 	if(!localStorage.getItem('theme')){
 		localStorage.setItem('theme', 'dark');

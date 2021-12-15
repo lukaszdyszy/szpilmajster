@@ -22,7 +22,7 @@
 									</a>
 								</h2>
 								<div class="author"><?php 
-									echo '<a href="'.HREF.'user/articles/1">'.$art['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
+									echo '<a href="'.HREF.'user/profil/'.$art['author'].'">'.$art['author'].'</a>, '.explode(' ', $art['date_added'])[0]; 
 								?></div>
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 			
 			<?php include(VIEW.'includes/articlesgrid.php'); ?>
 
-			<a href="/home/newest/2" class="more-newest-btn">Więcej</a>
+			<a href="<?php echo HREF; ?>home/newest/2" class="more-newest-btn">Więcej</a>
 
 		</div>
 	</section>

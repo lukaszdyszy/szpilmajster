@@ -76,6 +76,24 @@ class Article extends Model
 		$stmt->execute();
 		return $article_id;
 	}
+
+	public function getCommentsByUser($username, $page){
+		$offset = ($page-1)*10;
+		$stmt = $this->db->prepare("SELECT comments.date_added AS 'date', comments.content AS 'content', articles.id_article FROM comments, users, articles WHERE comments.id_user=users.id_user AND comments.id_article=articles.id_article AND users.username=:user ORDER BY comments.date_added DESC LIMIT 10 OFFSET :offset;");
+		$stmt->bindValue(':user', $username, PDO::PARAM_STR);
+		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
+	public function getArticlesByUser($username, $page){
+		$offset = ($page-1)*6;
+		$stmt = $this->db->prepare("SELECT articles.id_article, articles.title, articles.content, users.username AS 'author', articles.date_added, articles.date_modified, categories.name AS 'category', articles.image FROM articles, users, categories WHERE articles.author=users.id_user AND categories.id_category=articles.id_category AND users.username=:user LIMIT 6 OFFSET :offset;");
+		$stmt->bindValue(':user', $username, PDO::PARAM_STR);
+		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
 }
 
 

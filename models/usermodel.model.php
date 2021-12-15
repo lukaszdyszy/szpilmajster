@@ -24,6 +24,13 @@ class Usermodel extends Model
 		$stmt = $this->db->prepare("INSERT INTO users VALUES(null, :user, :pass, 4)");
 		$stmt->execute(array(':user' => $username, ':pass' => $password));
 	}
+
+	public function getUserRole($username){
+		$stmt = $this->db->prepare("SELECT roles.name FROM users, roles WHERE users.id_role=roles.id_role AND users.username=:user");
+		$stmt->bindValue(':user', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 }
 
 

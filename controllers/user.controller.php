@@ -58,6 +58,34 @@ class User extends Controller
 			throw new InternalErrorException();
 		}
 	}
+
+	// wyświetl profil użytkownika
+	public function profil()
+	{
+		if(empty($this->params[0])) throw new NotFoundException();
+		$this->data['username'] = $this->params[0];
+		
+		try {
+			$userModel = $this->loadModel('usermodel');
+			$userrole = $userModel->getUserRole($this->data['username'])['name'];
+			if(!$userrole) throw new NotFoundException();
+			
+			$articleModel = $this->loadModel('article');
+			$comments = $articleModel->getCommentsByUser($this->data['username'], 1);
+			$articles = $articleModel->getArticlesByUser($this->data['username'], 1);
+
+			$this->data['articles'] = $articles;
+			$this->data['comments'] = $comments;
+			$this->data['userrole'] = $userrole;
+
+			$this->loadView('userprofil');
+			$this->render();
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (NotFoundException $e){
+			throw $e;
+		}
+	}
 	
 }
 ?>
