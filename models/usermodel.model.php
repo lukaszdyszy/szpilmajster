@@ -31,6 +31,20 @@ class Usermodel extends Model
 		$stmt->execute();
 		return $stmt->fetch();
 	}
+
+	public function deleteUser($user){
+		$stmt = $this->db->prepare("DELETE FROM users WHERE id_user=:user");
+		$stmt->bindValue(':user', $user, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function changePassword($user, $password){
+		$password = password_hash($password, PASSWORD_DEFAULT); // hashowanie hasła
+		$stmt = $this->db->prepare("UPDATE users SET password=:pass WHERE id_user=:user");
+		$stmt->bindValue(':user', $user, PDO::PARAM_INT);
+		$stmt->bindValue(':pass', $password, PDO::PARAM_STR);
+		$stmt->execute();
+	}
 }
 
 

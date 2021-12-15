@@ -103,8 +103,12 @@ messages.forEach(msg => {
 
 /* ==================== User profile ================== */
 const userSwitches = document.querySelectorAll('.user-section-switch > a.btn');
+const userPopupsLinks = document.querySelectorAll('.user-activities > a.btn');
+const closeFormBtns = document.querySelectorAll('.close-form');
 const userComments = document.querySelector('.user-comments');
 const userArticles = document.querySelector('.user-articles');
+const changePass = document.querySelector('.change-pass-popup');
+const deleteAccount = document.querySelector('.delete-account-popup');
 userSwitches.forEach(el => {
 	if(el.attributes.href.value == '#comments'){
 		el.addEventListener('click', () => {
@@ -117,7 +121,24 @@ userSwitches.forEach(el => {
 			userComments.style.display = 'none';
 		});
 	}
-})
+});
+userPopupsLinks.forEach(el => {
+	if(el.attributes.href.value == '#changepass'){
+		el.addEventListener('click', () => {
+			changePass.classList.add('open');
+		});
+	} else {
+		el.addEventListener('click', () => {
+			deleteAccount.classList.add('open');
+		});
+	}
+});
+closeFormBtns.forEach(el => {
+	el.addEventListener('click', () => {
+		changePass.classList.remove('open');
+		deleteAccount.classList.remove('open');
+	});
+});
 /* ==================================================== */
 
 window.addEventListener('load', () => {

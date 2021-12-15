@@ -247,6 +247,13 @@ input:focus {
 #open-form{
 	display: none;
 }
+
+i.close-form{
+	position: absolute;
+	right: 0;
+	top: 10px;
+	font-size: 1.5rem;
+}
 /* ============================= */
 
 /* register form */
@@ -598,12 +605,6 @@ section.user-header{
 	}
 	header.login-form-header{
 		position: relative;
-	}
-	i#close-form{
-		position: absolute;
-		right: 0;
-		top: 10px;
-		font-size: 1.5rem;
 	}
 	#open-form{
 		display: list-item;

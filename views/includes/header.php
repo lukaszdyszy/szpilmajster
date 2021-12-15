@@ -119,7 +119,7 @@
 				<form action="<?php echo HREF; ?>user" method="post" class="login-form">
 					<header class="login-form-header">
 						<h2>Logowanie</h2>
-						<i class="far fa-times-circle" id="close-form"></i>
+						<i class="far fa-times-circle close-form" id="close-form"></i>
 					</header>
 					<input type="text" name="user" class="login-form-input" placeholder="username...">
 					<input type="password" name="pass" class="login-form-input" placeholder="password">

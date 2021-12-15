@@ -84,7 +84,67 @@ class User extends Controller
 			throw $e;
 		} catch (NotFoundException $e){
 			throw $e;
+		} catch (Exception $e) {
+			throw new InternalErrorException();
 		}
+	}
+
+	// usuń konto
+	public function delete()
+	{
+		if(empty($this->params[0])) throw new NotFoundException();
+		$id = $this->params[0];
+		
+		if($id != $_SESSION['logged']['id_user'] && $_SESSION['logged']['id_role'] != 1) throw new UnauthorizedException();
+
+		try {
+			$usermodel = $this->loadModel('usermodel');
+			$usermodel->deleteUser($id);
+
+			if($_SESSION['logged']['id_user'] == $id){
+				session_destroy();
+				header('Location: '.HREF);
+			} else {
+				header('Location: '.HREF.'admin');
+			}
+			$_SESSION['messages'][] = 'Użytkownik usunięty';
+
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (Exception $e) {
+			throw new InternalErrorException();
+		}
+	}
+
+	// zmień hasło
+	public function changepass()
+	{
+		if(empty($this->params[0])) throw new NotFoundException();
+		$id = $this->params[0];
+		
+		if($id != $_SESSION['logged']['id_user']) throw new UnauthorizedException();
+
+		try {
+			if(!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/', $_POST['pass'])){
+				throw new Exception('Niepoprawne hasło (min. 8 znaków, musi zawierać małe i duże litery cyfrę oraz znak specjalny)');
+			} else if ($_POST['pass'] != $_POST['pass2']){
+				throw new BadRequestException('Hasła nie są zgodne');
+			}
+
+			$usermodel = $this->loadModel('usermodel');
+			$usermodel->changePassword($id, $_POST['pass']);
+
+			$_SESSION['messages'][] = 'Hasło zmienione pomyślnie';
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (BadRequestException $e) {
+			http_response_code($e->getStatus());
+			$_SESSION['messages'][] = $e->getMessage();
+		} catch (Exception $e) {
+			throw new InternalErrorException();
+		}
+
+		header('Location: '.HREF.'user/profil/'.$_SESSION['logged']['username']);
 	}
 	
 }
