@@ -61,7 +61,12 @@
 						<li class="menu-item sub-menu-link">
 							<a class="menu-link"><?php echo $_SESSION['logged']['username']; ?> <i class="fas fa-caret-down"></i></a>
 							<ul class="menu sub-menu">
-								<li class="menu-item sub-menu-item">Profil</li>
+								<li class="menu-item sub-menu-item">
+									<a class="menu-link" 
+									href="<?php echo HREF; ?>user/profil/<?php echo $_SESSION['logged']['username']; ?>">
+										Profil
+									</a>
+								</li>
 								<li class="menu-item sub-menu-item">
 									<a class="menu-link" href="<?php echo HREF; ?>user/logout">Wyloguj</a>
 								</li>

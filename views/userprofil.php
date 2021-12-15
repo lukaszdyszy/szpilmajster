@@ -35,7 +35,7 @@
 
 				<a href="<?php echo HREF; ?>user/comments/2" class="more-newest-btn">Więcej</a>
 			</section>
-			<section class="user-articles">
+			<section class="user-articles" style="display: none;">
 				<?php include(VIEW.'includes/articlesgrid.php'); ?>
 
 				<a href="<?php echo HREF; ?>user/articles/2" class="more-newest-btn">Więcej</a>
