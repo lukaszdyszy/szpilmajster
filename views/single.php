@@ -18,7 +18,27 @@
 		<div id="article-content"><?php echo $data['article']['content']; ?></div>
 
 		<!-- Sekcja komentarzy -->
-		<section class="comments"></section>
+		<section class="comments">
+			<h2>Komentarze</h2>
+			<form class="" action="<?php echo HREF; ?>single/makeComment/<?php echo $data['article']["id_article"]; ?>" method="post" enctype="multipart/form-data">
+				<textarea name="content" rows="8" cols="80"></textarea>
+				<input type="submit" name="add_comment" value="dodaj">
+			</form>
+			<div class="">
+				<?php
+				foreach ($data["comments"] as $i => $com) {
+					?> <div class="single-comment">
+						<div class="comment-author">
+							<?php echo $com["author"] ?> <div style="float: right"><?php echo $com["date"] ?></div>
+						</div>
+						<div class="comment-content">
+							<?php echo $com["content"] ?>
+						</div>
+					</div> <?php
+				}
+				?>
+			</div>
+		</section>
 	</div>
 </main>
 

@@ -159,15 +159,15 @@ header.main-header{
 	transition: transform .5s;
 }
 .menu-toggle.open .top{
-	transform: 
-	rotate(45deg) 
+	transform:
+	rotate(45deg)
 	translate(8px, 9px);
 }
 .menu-toggle.open .middle{
 	transform: scaleX(0);
 }
 .menu-toggle.open .bottom{
-	transform: 
+	transform:
 	rotate(-45deg)
 	translate(9px, -9px)
 }
@@ -494,6 +494,16 @@ input.add-article-input{
 .single-date{
 	text-align: right;
 }
+
+.single-comment {
+	border-bottom: 1px groove var(--color-primary);
+	margin-bottom: 10px;
+}
+
+.comment-content {
+	padding: 15px;
+}
+
 /* ============================= */
 
 /* desktop */

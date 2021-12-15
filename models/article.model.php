@@ -32,7 +32,7 @@ class Article extends Model
 		return $stmt->fetch();
 	}
 	public function getNrOfArticlesCategory($cat){
-		$stmt = $this->db->prepare("SELECT COUNT(id_article) AS 'number' FROM articles, categories 
+		$stmt = $this->db->prepare("SELECT COUNT(id_article) AS 'number' FROM articles, categories
 									WHERE articles.id_category=categories.id_category AND categories.name=:cat;");
 		$stmt->bindValue(':cat', $cat, PDO::PARAM_STR);
 		$stmt->execute();
@@ -57,6 +57,24 @@ class Article extends Model
 		$stmt->bindValue(':image', $image, PDO::PARAM_STR);
 		$stmt->execute();
 		return $this->db->lastInsertId();
+	}
+
+	public function getCommentsByArticleId($id){
+		$stmt = $this->db->prepare("SELECT comments.date_added AS 'date', comments.content AS 'content', users.username AS 'author' FROM comments, users WHERE comments.id_user=users.id_user AND comments.id_article=:id ORDER BY comments.date_added DESC;");
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
+	public function addComment($article_id, $content, $author){
+		$stmt = $this->db->prepare("INSERT INTO comments (id_article, id_user, content, date_added, date_modified) VALUES(:article_id, :author, :content, :date_added, :date_modified)");
+		$stmt->bindValue(':author', $author, PDO::PARAM_STR);
+		$stmt->bindValue(':content', $content, PDO::PARAM_STR);
+		$stmt->bindValue(':date_added', date('Y-m-d H:m:s', time()), PDO::PARAM_STR);
+		$stmt->bindValue(':date_modified', date('Y-m-d H:m:s', time()), PDO::PARAM_STR);
+		$stmt->bindValue(':article_id', $article_id, PDO::PARAM_STR);
+		$stmt->execute();
+		return $article_id;
 	}
 }
 

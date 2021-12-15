@@ -12,24 +12,24 @@
 	/** =================================== */
 
 	session_start();
-	
+
 	try {
 		require_once('functions.php');
 		require_once('exceptions.php');
 		require_once('db.config.php');
-	
+
 		$uri = splitURL();	// przygotowanie parametrów na podstawie adresu zapytania
-		
+
 		// połączenie z bazą
 		$db = new PDO('mysql:dbname='.$db_name.';host='.$db_host, $db_user, $db_pass);
-	
+
 		$controller = strtolower(empty($uri[0]) ? 'home' : $uri[0]);	// controller - default 'home'
 		$action		= strtolower(empty($uri[1]) ? 'index' : $uri[1]);	// action - default index
 		$header		= initHeader();		// data for menu - categories, page's title
 
 		// error 404 jeśli controller nie istnieje
 		if(!file_exists(CONTROLLER.$controller.'.controller.php')) throw new NotFoundException();
-		
+
 		// w przeciwnym razie include controller
 		include(CONTROLLER.$controller.'.controller.php');
 		$controller = ucwords($controller);

@@ -12,9 +12,11 @@ class Single extends Controller
 		try {
 			$articleModel = $this->loadModel('article');
 			$article = $articleModel->getArticleById($this->params[0]);
+			$comments = $articleModel->getCommentsByArticleId($this->params[0]);
 			if(!$article) throw new NotFoundException();
-			
+
 			$this->data['article'] = $article;
+			$this->data['comments'] = $comments;
 
 			$this->loadView('single');
 			$this->render();
@@ -39,7 +41,7 @@ class Single extends Controller
 			throw new UnauthorizedException();
 		}
 		$author = $_SESSION['logged']['id_user'];
-		
+
 		try {
 			// jeżeli formularz przesłany
 			if(isset($_POST['add-article'])){
@@ -56,7 +58,7 @@ class Single extends Controller
 				if(!empty($_POST['category'])){
 					$category = intval($_POST['category']);
 				}
-				
+
 				// prześlij plik, jeśli istnieje
 				if(is_uploaded_file($_FILES['article-image']['tmp_name'])){
 					$image = uploadFile('article-image');
@@ -65,12 +67,12 @@ class Single extends Controller
 				// dodaj artykuł
 				$articleModel = $this->loadModel('article');
 				$inserted = $articleModel->addArticle($author, $title, $content, $category, $image);
-				
+
 				// sukces
 				$_SESSION['messages'] = array('Artykuł pomyślnie dodany');
 				header('Location: '.HREF.'single/read/'.$inserted);
 			}
-			
+
 		} catch (FunctionalityException $e) {
 			http_response_code($e->getStatus());
 			$this->data['error'] = $e->getMessage();
@@ -91,6 +93,43 @@ class Single extends Controller
 	// modyfikacja artykułu (single/edit)
 	public function edit(){
 		throw new NotImplementedException();
+	}
+
+	// dodanie komentarza (single/makeComment)
+	public function makeComment() {
+		$content = '';
+
+		// sprawdź uprawnienia użytkownika
+		if(!isset($_SESSION['logged']) || $_SESSION['logged']['id_role'] > 3){
+			throw new UnauthorizedException();
+		}
+		$author = $_SESSION['logged']['id_user'];
+
+		try {
+			// jeżeli formularz przesłany
+			if(isset($_POST['add_comment'])){
+
+				// czy jest zawartość
+				if(empty($_POST['content'])) throw new BadRequestException('Treść nie może być pusta');
+				$content = $_POST['content'];
+
+				$articleModel = $this->loadModel('article');
+				$inserted = $articleModel->addComment($this->params[0], $content, $author);
+
+				// sukces
+				$_SESSION['messages'] = array('Artykuł pomyślnie dodany');
+				header('Location: '.HREF.'single/read/'.$inserted);
+			}
+
+		} catch (FunctionalityException $e) {
+			http_response_code($e->getStatus());
+			$this->data['error'] = $e->getMessage();
+		} catch (Exception $e) {
+			throw new IternalErrorException();
+		}
+
+		$this->loadView('single');
+		$this->render();
 	}
 }
 ?>
