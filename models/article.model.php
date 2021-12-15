@@ -38,6 +38,20 @@ class Article extends Model
 		$stmt->execute();
 		return $stmt->fetch();
 	}
+	public function getNrOfArticlesUser($user){
+		$stmt = $this->db->prepare("SELECT COUNT(id_article) AS 'number' FROM articles, users
+									WHERE articles.author=users.id_user AND users.username=:user;");
+		$stmt->bindValue(':user', $user, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+	public function getNrOfCommentsUser($user){
+		$stmt = $this->db->prepare("SELECT COUNT(id_comment) AS 'number' FROM comments, users
+									WHERE comments.id_user=users.id_user AND users.username=:user;");
+		$stmt->bindValue(':user', $user, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 
 	public function getArticleById($id){
 		$stmt = $this->db->prepare("SELECT articles.id_article, articles.title, articles.content, users.username AS 'author', articles.date_added, articles.date_modified, categories.name AS 'category', articles.image FROM articles, users, categories WHERE articles.author=users.id_user AND categories.id_category=articles.id_category AND articles.id_article=:id;");
@@ -88,7 +102,7 @@ class Article extends Model
 
 	public function getArticlesByUser($username, $page){
 		$offset = ($page-1)*6;
-		$stmt = $this->db->prepare("SELECT articles.id_article, articles.title, articles.content, users.username AS 'author', articles.date_added, articles.date_modified, categories.name AS 'category', articles.image FROM articles, users, categories WHERE articles.author=users.id_user AND categories.id_category=articles.id_category AND users.username=:user LIMIT 6 OFFSET :offset;");
+		$stmt = $this->db->prepare("SELECT articles.id_article, articles.title, articles.content, users.username AS 'author', articles.date_added, articles.date_modified, categories.name AS 'category', articles.image FROM articles, users, categories WHERE articles.author=users.id_user AND categories.id_category=articles.id_category AND users.username=:user ORDER BY articles.date_added DESC LIMIT 6 OFFSET :offset;");
 		$stmt->bindValue(':user', $username, PDO::PARAM_STR);
 		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 		$stmt->execute();

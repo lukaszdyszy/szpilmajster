@@ -147,5 +147,65 @@ class User extends Controller
 		header('Location: '.HREF.'user/profil/'.$_SESSION['logged']['username']);
 	}
 	
+	// artykuły użytkownika (user/articles/:user/:page)
+	function articles(){
+		if(empty($this->params[0])) throw new NotFoundException();
+
+		try {
+			$username = $this->params[0];
+			$page = intval($this->params[1])===0 ? 1 : intval($this->params[1]);
+
+			$pages = ceil($articlemodel->getNrOfArticlesUser($username)['number']/6);
+			if($pages < $page) $page = $pages;
+			
+			$articlemodel = $this->loadModel('article');
+			$articles = $articlemodel->getArticlesByUser($username, $page);
+
+			$this->data = array(
+				'articles'	=> $articles,
+				'pages'		=> $pages,
+				'page'		=> $page,
+				'username'	=> $username
+			);
+
+			$this->loadView('userarticles');
+			$this->render();
+		} catch (PDOException $e) {
+			throw $e;
+		} catch (Exception $e) {
+			throw new InternalErrorException();
+		}
+	}
+
+	// komentarze użytkownika (user/comments/:user/:page)
+	function comments(){
+		if(empty($this->params[0])) throw new NotFoundException();
+
+		try {
+			$username = $this->params[0];
+			$page = intval($this->params[1])===0 ? 1 : intval($this->params[1]);
+
+			$articlemodel = $this->loadModel('article');
+
+			$pages = ceil($articlemodel->getNrOfCommentsUser($username)['number']/10);
+			if($pages < $page) $page = $pages;
+			
+			$articles = $articlemodel->getCommentsByUser($username, $page);
+
+			$this->data = array(
+				'comments'	=> $articles,
+				'pages'		=> $pages,
+				'page'		=> $page,
+				'username'	=> $username
+			);
+
+			$this->loadView('usercomments');
+			$this->render();
+		} catch (PDOException $e) {
+			throw $e;
+		} /*catch (Exception $e) {
+			throw new InternalErrorException();
+		}*/
+	}
 }
 ?>
