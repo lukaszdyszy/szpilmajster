@@ -78,6 +78,15 @@
 								</a> 
 							</li>
 						<?php } ?>
+
+						<!-- Tylko dla modów -->
+						<?php if($_SESSION['logged']['id_role'] == 1){ ?>
+							<li class="menu-item">
+								<a href="<?php echo HREF; ?>admin/main">
+									Zarządzaj
+								</a>
+							</li>
+						<?php } ?>
 					
 					<!-- Tylko dla niezalogowanych -->
 					<?php } else { ?>

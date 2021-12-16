@@ -45,6 +45,30 @@ class Usermodel extends Model
 		$stmt->bindValue(':pass', $password, PDO::PARAM_STR);
 		$stmt->execute();
 	}
+
+	public function getAll() {
+		$stmt = $this->db->prepare("SELECT users.username AS 'name', users.id_role AS 'role', users.id_user AS 'id' FROM users;");
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
+	public function setRole($id, $role, $myRole) {
+		$stmt = $this->db->prepare("SELECT users.id_role AS 'role' FROM users WHERE users.id_user = :id");
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$targetRole = $stmt->fetch();
+
+		if($targetRole['role'] <= $myRole) {
+			return false;
+		}
+
+		$stmt = $this->db->prepare("UPDATE users SET id_role = :role WHERE users.id_user = :id");
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+		$stmt->bindValue(':role', $role, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return true;
+	}
 }
 
 
