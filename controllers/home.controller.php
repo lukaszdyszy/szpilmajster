@@ -29,7 +29,11 @@ class Home extends Controller
 		try {
 			$articleModel = $this->loadModel('article');
 			
-			$page = intval($this->params[0])===0 ? 1 : intval($this->params[0]);
+			if(isset($this->params[0])){
+				$page = (intval($this->params[0])===0) ? 1 : intval($this->params[0]);
+			} else {
+				$page = 1;
+			}
 
 			$pages = ceil($articleModel->getNrOfArticles()['number']/6);
 			if($pages < $page) $page = $pages;
@@ -54,11 +58,18 @@ class Home extends Controller
 	// artykuły z konkretnej kategorii
 	public function category()
 	{
+		if(!isset($this->params[0])) throw new NotFoundException();
+		
 		try {
 			$articleModel = $this->loadModel('article');
 
 			$category	= $this->params[0];
-			$page		= (intval($this->params[1])===0 || empty($this->params[1])) ? 1 : intval($this->params[1]);
+
+			if(isset($this->params[1])){
+				$page		= (intval($this->params[1])===0) ? 1 : intval($this->params[1]);
+			} else {
+				$page = 1;
+			}
 
 			$pages = ceil($articleModel->getNrOfArticlesCategory($category)['number']/6);
 			if($pages < $page) $page = $pages;

@@ -4,7 +4,13 @@
 	<div class="container">
 		<h1>Artykuły użytkownika: <?php echo $data['username']; ?></h1>
 
-		<?php include(VIEW.'includes/articlesgrid.php'); ?>
+		<?php 
+			if(count($data['articles']) === 0){
+				echo 'Brak artykułów';
+			} else {
+				include(VIEW.'includes/articlesgrid.php');
+			}
+		?>
 		
 		<!-- Paginacja -->
 		<div class="newest-pagination">

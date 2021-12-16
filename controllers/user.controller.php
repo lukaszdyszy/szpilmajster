@@ -153,7 +153,12 @@ class User extends Controller
 
 		try {
 			$username = $this->params[0];
-			$page = intval($this->params[1])===0 ? 1 : intval($this->params[1]);
+
+			if(isset($this->params[0])){
+				$page = (intval($this->params[1])===0) ? 1 : intval($this->params[1]);
+			} else {
+				$page = 1;
+			}
 
 			$articlemodel = $this->loadModel('article');
 			
@@ -185,7 +190,12 @@ class User extends Controller
 
 		try {
 			$username = $this->params[0];
-			$page = intval($this->params[1])===0 ? 1 : intval($this->params[1]);
+
+			if(isset($this->params[0])){
+				$page = (intval($this->params[1])===0) ? 1 : intval($this->params[1]);
+			} else {
+				$page = 1;
+			}
 
 			$articlemodel = $this->loadModel('article');
 

@@ -37,9 +37,16 @@
 				
 			</section>
 			<section class="user-articles" style="display: none;">
-				<?php include(VIEW.'includes/articlesgrid.php'); ?>
-
-				<a href="<?php echo HREF.'user/articles/'.$data['username'].'/2'; ?>" class="more-newest-btn">Więcej</a>
+				<?php 
+					if(count($data['articles']) === 0){
+						echo 'Brak artykułów';
+					} else {
+						include(VIEW.'includes/articlesgrid.php');
+						?>
+							<a href="<?php echo HREF.'user/articles/'.$data['username'].'/2'; ?>" class="more-newest-btn">Więcej</a>
+						<?php
+					} 
+				?>
 			</section>
 		</section>
 	</div>
