@@ -155,11 +155,13 @@ class User extends Controller
 			$username = $this->params[0];
 			$page = intval($this->params[1])===0 ? 1 : intval($this->params[1]);
 
+			$articlemodel = $this->loadModel('article');
+			
+			$articles = $articlemodel->getArticlesByUser($username, $page);
+
 			$pages = ceil($articlemodel->getNrOfArticlesUser($username)['number']/6);
 			if($pages < $page) $page = $pages;
 			
-			$articlemodel = $this->loadModel('article');
-			$articles = $articlemodel->getArticlesByUser($username, $page);
 
 			$this->data = array(
 				'articles'	=> $articles,
