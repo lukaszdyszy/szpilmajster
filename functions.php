@@ -1,6 +1,5 @@
 <?php
 	function splitURL(){
-		// zajebisty łańcuszek XDDDD
 		return  explode('/', trim(explode('?', substr_replace($_SERVER['REQUEST_URI'], '', strpos($_SERVER['REQUEST_URI'], INDEX), strlen(INDEX)))[0], '/'));
 	}
 
