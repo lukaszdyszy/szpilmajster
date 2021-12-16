@@ -4,9 +4,6 @@
   <div class="container">
     <h1>Zarządzanie</h1>
 
-    <?php
-    print_r($_SESSION["POG"]); ?>
-
     <h4>użytkownicy</h4>
     <div class="admin_users">
       <?php foreach ($data['users'] as $key => $user): ?>
