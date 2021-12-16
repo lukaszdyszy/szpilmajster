@@ -100,7 +100,7 @@ class Single extends Controller
 		$content = '';
 
 		// sprawdź uprawnienia użytkownika
-		if(!isset($_SESSION['logged']) || $_SESSION['logged']['id_role'] > 3){
+		if(!isset($_SESSION['logged'])){
 			throw new UnauthorizedException();
 		}
 		$author = $_SESSION['logged']['id_user'];

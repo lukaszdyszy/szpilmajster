@@ -24,7 +24,7 @@
 	<header class="main-header">
 
 		<!-- Logo -->
-		<div class="website-logo"><a class="menu-link" href="<?php echo HREF; ?>">Logo</a></div>
+		<div class="website-logo"><a class="menu-link" href="<?php echo HREF; ?>">Strona główna</a></div>
 
 		<!-- Moblie menu toggler -->
 		<div class="menu-toggle" id="menu-toggle">
@@ -37,9 +37,6 @@
 		<div class="website-menu" id="website-menu">
 			<nav class="main-nav">
 				<ul class="menu main-menu">
-					<li class="menu-item">
-						<a class="menu-link" href="<?php echo HREF; ?>">Strona główna</a>
-					</li>
 					<li class="menu-item sub-menu-link">
 						<a class="menu-link">Kategorie <i class="fas fa-caret-down"></i></a>
 						<ul class="menu sub-menu">
@@ -74,7 +71,7 @@
 						</li>
 
 						<!-- Tylko dla mogących pisać artykuły -->
-						<?php if($_SESSION['logged']['id_role']<3){ ?>
+						<?php if($_SESSION['logged']['id_role'] != 4){ ?>
 							<li class="menu-item">
 								<a href="<?php echo HREF; ?>single/write">
 									Nowy artykuł
